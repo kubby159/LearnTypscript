@@ -1,7 +1,10 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 const Container = styled.div`
   padding: 0px 20px;
+  max-width: 480px;
+  margin: 0 auto;
 `;
 
 const Header = styled.header`
@@ -34,72 +37,58 @@ const Coin = styled.li`
   }
 `;
 
+const Loader = styled.span`
+  text-align: center;
+  display: block;
+`;
+
 const Title = styled.h1`
   font-size: 48px;
   color: ${(props) => props.theme.accentColor};
 `;
-const coins = [
-  {
-    id: "stx-stacks",
-    name: "Stacks",
-    symbol: "STX",
-    rank: 61,
-    is_new: false,
-    is_active: true,
-    type: "coin",
-  },
-  {
-    id: "etc-ethereum-classic",
-    name: "Ethereum Classic",
-    symbol: "ETC",
-    rank: 39,
-    is_new: false,
-    is_active: true,
-    type: "coin",
-  },
-  {
-    id: "matic-polygon",
-    name: "Polygon",
-    symbol: "MATIC",
-    rank: 16,
-    is_new: false,
-    is_active: true,
-    type: "token",
-  },
-  {
-    id: "btc-bitcoin",
-    name: "Bitcoin",
-    symbol: "BTC",
-    rank: 1,
-    is_new: false,
-    is_active: true,
-    type: "coin",
-  },
-  {
-    id: "eth-ethereum",
-    name: "Ethereum",
-    symbol: "ETH",
-    rank: 2,
-    is_new: false,
-    is_active: true,
-    type: "coin",
-  },
-];
+
+interface CoinInterFace {
+  id: string;
+  name: string;
+  symbol: string;
+  rank: number;
+  is_new: boolean;
+  is_active: boolean;
+  type: string;
+}
+
+const API_URL = "https://api.coinpaprika.com/v1/coins";
+
 function Coins() {
+  const [coins, setCoins] = useState<CoinInterFace[]>([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    //즉시 실행함수
+    (async () => {
+      const response = await fetch(API_URL);
+      const json = await response.json();
+      setCoins(json.slice(0, 100));
+      setLoading(false);
+    })();
+  }, []);
   return (
     <Container>
       <Header>
         <Title>Cypto Screen</Title>
       </Header>
-      <CoinsList>
-        {coins.map((coin) => {
-          return (
-            <Coin key={coin.id}>
-              <Link to={`/${coin.id}`}> {coin.name} &rarr; </Link>
-            </Coin>
-          );
-        })}
-      </CoinsList>
+      {loading ? (
+        <Loader>{`Loading...`}</Loader>
+      ) : (
+        <CoinsList>
+          {coins.map((coin) => {
+            return (
+              <Coin key={coin.id}>
+                <Link to={`/${coin.id}`}> {coin.name} &rarr; </Link>
+              </Coin>
+            );
+          })}
+        </CoinsList>
+      )}
     </Container>
   );
 }
