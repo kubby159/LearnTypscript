@@ -23,9 +23,8 @@ const Coin = styled.li`
   margin-bottom: 10px;
   border-radius: 15px;
   a {
-    /* 글자 밖을 클릭해도 접속할 수 있게 블럭요소로 바꿔준다. */
-    display: block;
-    /* padding을 이용해서 클릭범위를 넓힌다. */
+    display: flex;
+    align-items: center;
     padding: 20px;
     transition: color 0.5s ease-in;
     cursor: pointer;
@@ -45,6 +44,12 @@ const Loader = styled.span`
 const Title = styled.h1`
   font-size: 48px;
   color: ${(props) => props.theme.accentColor};
+`;
+
+const Img = styled.img`
+  width: 35px;
+  height: 35px;
+  margin-right: 10px;
 `;
 
 interface CoinInterFace {
@@ -83,7 +88,18 @@ function Coins() {
           {coins.map((coin) => {
             return (
               <Coin key={coin.id}>
-                <Link to={`/${coin.id}`}> {coin.name} &rarr; </Link>
+                <Link
+                  to={{
+                    pathname: `/${coin.id}`,
+                    state: { name: coin.name },
+                  }}
+                >
+                  <Img
+                    alt={`symbol`}
+                    src={`https://cryptoicon-api.vercel.app/api/icon/${coin.symbol.toLowerCase()}`}
+                  />
+                  {coin.name} &rarr; {console.log(coin)}
+                </Link>
               </Coin>
             );
           })}
