@@ -37,8 +37,8 @@ function Chart({ coinId }: ChartProps) {
           ]}
           options={{
             chart: {
-              height: 500,
-              width: 500,
+              height: 400,
+              width: 400,
             },
             theme: {
               mode: "dark",
