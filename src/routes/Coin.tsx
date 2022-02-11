@@ -157,17 +157,6 @@ function Coin() {
     () => fetchCoinTickers(coinId)
   );
 
-  // useEffect(() => {
-  //   (async () => {
-  //     const infoData = await (await fetch(`${API_URL}/${coinId}`)).json();
-  //     const priceData = await (
-  //       await fetch(`${API_URL_PRICE}/${coinId}`)
-  //     ).json();
-  //     setInfo(infoData);
-  //     setPriceInfo(priceData);
-  //     setLoading(false);
-  //   })();
-  // }, []);
   const loading = infoLoading || tickersLoading;
   return (
     <Container>
@@ -215,11 +204,11 @@ function Coin() {
           </Tabs>
 
           <Switch>
-            <Route path={`/${coinId}/price`}>
+            <Route path={`/:coinId/price`}>
               <Price />
             </Route>
-            <Route path={`/${coinId}/chart`}>
-              <Chart />
+            <Route path={`/:coinId/chart`}>
+              <Chart coinId={coinId} />
             </Route>
           </Switch>
         </>

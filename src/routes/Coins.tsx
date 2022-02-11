@@ -67,7 +67,7 @@ interface ICoin {
 
 function Coins() {
   const { isLoading, data } = useQuery<ICoin[]>("allCoins", fetchCoins);
-  console.log(182800637 + 93900005);
+
   return (
     <Container>
       <Header>
@@ -90,7 +90,7 @@ function Coins() {
                     alt={`symbol`}
                     src={`https://cryptoicon-api.vercel.app/api/icon/${coin.symbol.toLowerCase()}`}
                   />
-                  {coin.name} &rarr; {console.log(coin)}
+                  {coin.name} &rarr;
                 </Link>
               </Coin>
             );
