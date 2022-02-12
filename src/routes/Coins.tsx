@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { fetchCoins } from "./api";
-
+import { Helmet } from "react-helmet";
 const Container = styled.div`
   padding: 0px 20px;
   max-width: 480px;
@@ -70,6 +70,9 @@ function Coins() {
 
   return (
     <Container>
+      <Helmet>
+        <title>Cypto Screen</title>
+      </Helmet>
       <Header>
         <Title>Cypto Screen</Title>
       </Header>
