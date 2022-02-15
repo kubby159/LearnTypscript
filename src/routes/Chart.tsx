@@ -31,6 +31,7 @@ function Chart({ coinId }: ChartProps) {
   //     },
   //   ],
   // },
+  console.log(data);
   return (
     <div>
       {isLoading ? (
@@ -40,15 +41,31 @@ function Chart({ coinId }: ChartProps) {
           type="candlestick"
           series={data?.map((e) => {
             return {
-              data: [{ x: e.time_open, y: [e.open, e.high, e.low, e.close] }],
+              name: "",
+              data: [
+                {
+                  x: e.time_open,
+                  y: [
+                    e.open.toFixed(2),
+                    e.high.toFixed(2),
+                    e.low.toFixed(2),
+                    e.close.toFixed(2),
+                  ],
+                },
+              ],
             };
           })}
           options={{
+            legend: {
+              show: false,
+            },
             chart: {
-              height: 350,
+              height: 550,
               width: 500,
               background: "transparent",
+              offsetX: 0,
             },
+
             title: {
               text: "CandleStick Chart",
               align: "left",
@@ -58,12 +75,12 @@ function Chart({ coinId }: ChartProps) {
             },
             xaxis: {
               type: "datetime",
-            },
-            yaxis: {
-              tooltip: {
-                enabled: true,
+              crosshairs: {
+                show: true,
               },
+              tickPlacement: "between",
             },
+
             plotOptions: {
               candlestick: {
                 colors: {
@@ -75,8 +92,13 @@ function Chart({ coinId }: ChartProps) {
                 },
               },
             },
-            fill: {
-              colors: ["#1A73E8", "#B32824"],
+            stroke: {
+              show: true,
+              curve: "smooth",
+              lineCap: "butt",
+              colors: undefined,
+              width: 2,
+              dashArray: 0,
             },
           }}
         />
