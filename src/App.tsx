@@ -1,6 +1,11 @@
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import Router from "./Router";
+import { DarkModeToggle } from "react-dark-mode-toggle-2";
 import { ReactQueryDevtools } from "react-query/devtools";
+import { ThemeProvider } from "styled-components";
+import { lightTheme, darkTheme } from "./theme";
+import { useState } from "react";
+
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
 html, body, div, span, applet, object, iframe,
@@ -63,12 +68,32 @@ a {
   color: inherit;
 }
 `;
+const Toggle = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 40px;
+  border-radius: 12px;
+  border: 1px solid #000;
+`;
+
 function App() {
+  const [theme, setTheme] = useState(true);
+  const themeToggler = () => {
+    theme === true ? setTheme(false) : setTheme(true);
+  };
   return (
     <>
-      <GlobalStyle />
-      <Router />
-      <ReactQueryDevtools initialIsOpen={true} />
+      <ThemeProvider theme={theme === false ? lightTheme : darkTheme}>
+        <GlobalStyle />
+        <DarkModeToggle
+          onChange={themeToggler}
+          isDarkMode={theme}
+        ></DarkModeToggle>
+        <Router />
+        <ReactQueryDevtools initialIsOpen={true} />
+      </ThemeProvider>
     </>
   );
 }

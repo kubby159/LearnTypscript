@@ -166,7 +166,6 @@ function Coin() {
     <Container>
       <Helmet>
         <title>
-          {" "}
           {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
         </title>
       </Helmet>
