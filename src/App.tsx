@@ -68,14 +68,13 @@ a {
   color: inherit;
 }
 `;
-const Toggle = styled.button`
+const DarkModeToggleBox = styled.span`
   display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100px;
-  height: 40px;
-  border-radius: 12px;
-  border: 1px solid #000;
+  justify-content: flex-end;
+  padding: 8px;
+  button {
+    position: fixed;
+  }
 `;
 
 function App() {
@@ -87,10 +86,15 @@ function App() {
     <>
       <ThemeProvider theme={theme === false ? lightTheme : darkTheme}>
         <GlobalStyle />
-        <DarkModeToggle
-          onChange={themeToggler}
-          isDarkMode={theme}
-        ></DarkModeToggle>
+        <DarkModeToggleBox>
+          <DarkModeToggle
+            onChange={themeToggler}
+            isDarkMode={theme}
+            size="4.5rem"
+            speed={2.5}
+          ></DarkModeToggle>
+        </DarkModeToggleBox>
+
         <Router />
         <ReactQueryDevtools initialIsOpen={true} />
       </ThemeProvider>
