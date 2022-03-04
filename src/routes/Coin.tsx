@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { Helmet } from "react-helmet";
 import {
@@ -25,6 +24,7 @@ const Container = styled.div`
   padding: 0px 20px;
   max-width: 480px;
   margin: 0 auto;
+  color: ${(props) => props.theme.textColor};
 `;
 
 const Header = styled.header`
@@ -164,6 +164,10 @@ function Coin() {
   const loading = infoLoading || tickersLoading;
   return (
     <Container>
+      <Link to="/">
+        <button>Back</button>
+      </Link>
+
       <Helmet>
         <title>
           {state?.name ? state.name : loading ? "Loading..." : infoData?.name}

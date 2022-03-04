@@ -21,16 +21,16 @@ const CoinsList = styled.ul``;
 
 const Coin = styled.li`
   background-color: #fff;
-  color: ${(props) => props.theme.bgColor};
 
   margin-bottom: 10px;
-  border-radius: 14px;
+  border-radius: 15px;
   a {
     display: flex;
     align-items: center;
     padding: 20px;
     transition: color 0.5s ease-in;
     cursor: pointer;
+    color: #000;
   }
   &:hover {
     a {

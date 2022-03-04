@@ -31,7 +31,7 @@ function Chart({ coinId }: ChartProps) {
   //     },
   //   ],
   // },
-  console.log(data);
+
   return (
     <div>
       {isLoading ? (
@@ -62,7 +62,7 @@ function Chart({ coinId }: ChartProps) {
             chart: {
               height: 550,
               width: 500,
-              background: "transparent",
+              background: `#2f3640`,
               offsetX: 0,
             },
 
