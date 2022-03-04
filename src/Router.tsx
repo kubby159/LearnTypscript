@@ -3,7 +3,7 @@ import Coins from "./routes/Coins";
 import Coin from "./routes/Coin";
 function Router() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Switch>
         //URL 뒤부분을 변수로 이용.
         <Route path="/:coinId">
