@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/LearnTypescript/static/js/main.4945d74d.js",
-    "index.html": "/LearnTypescript/index.html",
-    "main.4945d74d.js.map": "/LearnTypescript/static/js/main.4945d74d.js.map"
+    "main.js": "/LearnTypscript/static/js/main.a59f3afd.js",
+    "index.html": "/LearnTypscript/index.html",
+    "main.a59f3afd.js.map": "/LearnTypscript/static/js/main.a59f3afd.js.map"
   },
   "entrypoints": [
-    "static/js/main.4945d74d.js"
+    "static/js/main.a59f3afd.js"
   ]
 }
