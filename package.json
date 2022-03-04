@@ -56,5 +56,5 @@
     "@types/react-helmet": "^6.1.5",
     "@types/react-router-dom": "^5.3.0"
   },
-  "homepage": "https://kubby159.github.io/LearnTypescript"
+  "homepage": "https://kubby159.github.io/LearnTypescript/"
 }
