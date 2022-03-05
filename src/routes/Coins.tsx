@@ -20,8 +20,9 @@ const Header = styled.header`
 const CoinsList = styled.ul``;
 
 const Coin = styled.li`
-  background-color: #fff;
+  background-color: ${(props) => props.theme.bgColor};
   color: ${(props) => props.theme.textColor};
+  border: 1px solid ${(props) => props.theme.borderColor};
   margin-bottom: 10px;
   border-radius: 15px;
   a {
@@ -30,7 +31,6 @@ const Coin = styled.li`
     padding: 20px;
     transition: color 0.5s ease-in;
     cursor: pointer;
-    color: #000;
   }
   &:hover {
     a {
