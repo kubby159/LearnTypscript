@@ -82,23 +82,22 @@ const DarkModeToggleBox = styled.span`
 `;
 
 function App() {
-  const [theme, setTheme] = useState(true);
+  const [isDark, setIsDark] = useState(false);
   const themeToggler = () => {
-    theme === true ? setTheme(false) : setTheme(true);
+    return setIsDark((current) => !current);
   };
   return (
     <>
-      <ThemeProvider theme={theme === false ? lightTheme : darkTheme}>
+      <ThemeProvider theme={isDark ? lightTheme : darkTheme}>
         <GlobalStyle />
         <DarkModeToggleBox>
           <DarkModeToggle
             onChange={themeToggler}
-            isDarkMode={theme}
+            isDarkMode={isDark}
             size="4.5rem"
             speed={2.5}
           ></DarkModeToggle>
         </DarkModeToggleBox>
-
         <Router />
         <ReactQueryDevtools initialIsOpen={true} />
       </ThemeProvider>
