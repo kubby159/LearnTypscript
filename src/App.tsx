@@ -4,7 +4,8 @@ import { DarkModeToggle } from "react-dark-mode-toggle-2";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "./theme";
-import { useState } from "react";
+import { useRecoilValue } from "recoil";
+import { isDarkAtom } from "./routes/atoms";
 
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
@@ -82,22 +83,11 @@ const DarkModeToggleBox = styled.span`
 `;
 
 function App() {
-  const [isDark, setIsDark] = useState(false);
-  const themeToggler = () => {
-    return setIsDark((current) => !current);
-  };
+  const isDark = useRecoilValue(isDarkAtom);
   return (
     <>
-      <ThemeProvider theme={isDark ? lightTheme : darkTheme}>
+      <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
         <GlobalStyle />
-        <DarkModeToggleBox>
-          <DarkModeToggle
-            onChange={themeToggler}
-            isDarkMode={isDark}
-            size="4.5rem"
-            speed={2.5}
-          ></DarkModeToggle>
-        </DarkModeToggleBox>
         <Router />
         <ReactQueryDevtools initialIsOpen={true} />
       </ThemeProvider>
